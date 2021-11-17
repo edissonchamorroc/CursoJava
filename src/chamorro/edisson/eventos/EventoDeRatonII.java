@@ -31,13 +31,13 @@ class MovimientoRaton implements MouseMotionListener {
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
+	 
 		System.out.println("Estas arrastrando con el raton");
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 		System.out.println("Estas moviendo el raton");
 	}
 
