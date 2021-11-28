@@ -10,7 +10,7 @@ public class Actividad1 {
 	carne=true;
 	raul=69.3F;
 	ana=765.987;
-
+	
 	}
 
 }
