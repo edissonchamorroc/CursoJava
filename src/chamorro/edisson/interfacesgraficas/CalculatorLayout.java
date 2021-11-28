@@ -26,7 +26,7 @@ class CalculatorFrame extends JFrame {
 
 		setTitle("Calculadora");
 
-		setBounds(500, 300, 300, 350);
+		setBounds(500, 300, 400, 350);
 
 		add(new PanelCalculator());
 
@@ -35,81 +35,148 @@ class CalculatorFrame extends JFrame {
 }
 
 class PanelCalculator extends JPanel {
-	
-	private JPanel numeracion = new JPanel();
-	
+
+	private JPanel numeration = new JPanel();
+
 	private JButton display;
-	
-	private boolean start=false;
+
+	private boolean start = false;
+
+	private String operation;
+	private String operationSaved="";
+
+	private double firstNumber;
+
+	private double result;
 
 	public PanelCalculator() {
-		
-		start=true;
-		
+
+		start = true;
+
 		setLayout(new BorderLayout());
+
+		numeration.setLayout(new GridLayout(4, 4));
 
 		display = new JButton("0");
 
 		display.setEnabled(false);
 
 		add(display, BorderLayout.NORTH);
-		
-		InsertarNumero addToDisplay = new InsertarNumero();
 
-		ponerBoton("7",addToDisplay);
-		ponerBoton("8",addToDisplay);
-		ponerBoton("9",addToDisplay);
-		ponerBoton("X",addToDisplay);
-		ponerBoton("4",addToDisplay);
-		ponerBoton("5",addToDisplay);
-		ponerBoton("6",addToDisplay);
-		ponerBoton("-",addToDisplay);
-		ponerBoton("1",addToDisplay);
-		ponerBoton("2",addToDisplay);
-		ponerBoton("3",addToDisplay);
-		ponerBoton("+",addToDisplay);
-		ponerBoton("0",addToDisplay);
-		ponerBoton(".",addToDisplay);
-		ponerBoton("=",addToDisplay);
-		
-		add(numeracion, BorderLayout.CENTER);
-		
+		textIntoDisplay addToDisplay = new textIntoDisplay();
+
+		Operation addOperation = new Operation();
+
+		addButtton("7", addToDisplay);
+		addButtton("8", addToDisplay);
+		addButtton("9", addToDisplay);
+		addOperation("X", addOperation);
+		addButtton("4", addToDisplay);
+		addButtton("5", addToDisplay);
+		addButtton("6", addToDisplay);
+		addOperation("-", addOperation);
+		addButtton("1", addToDisplay);
+		addButtton("2", addToDisplay);
+		addButtton("3", addToDisplay);
+		addOperation("+", addOperation);
+		addButtton("0", addToDisplay);
+		addButtton(".", addToDisplay);
+		addOperation("=", addOperation);
+		addOperation("/", addOperation);
+
+		add(numeration, BorderLayout.CENTER);
 
 	}
 
-	private void ponerBoton(String nombre, InsertarNumero oyente) {
-				
-		numeracion.setLayout(new GridLayout(4,4));
-		
+	private void addButtton(String nombre, textIntoDisplay oyente) {
+
 		JButton boton = new JButton(nombre);
-		
-		boton.addActionListener(oyente);
-		
-		numeracion.add(boton);
-		
-		
-	}
-	
 
-	private class InsertarNumero implements ActionListener{
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		String entrada=e.getActionCommand();
-		
-		if(start) {
-			display.setText(entrada);
-			
-			start=false;
-		}
-		else{
-			display.setText(display.getText()+entrada);
-		}
-		
-		
-		
+		boton.addActionListener(oyente);
+
+		numeration.add(boton);
+
 	}
-	
-}
+
+	private void addOperation(String operation, Operation oyente) {
+
+		JButton boton = new JButton(operation);
+
+		boton.addActionListener(oyente);
+
+		numeration.add(boton);
+
+	}
+
+	private class textIntoDisplay implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			String input = e.getActionCommand();
+
+			if (start) {
+				display.setText(input);
+
+				start = false;
+			} else {
+
+				display.setText(display.getText() + input);
+			}
+
+			firstNumber = Double.parseDouble(display.getText());
+
+		}
+
+	}
+
+	private class Operation implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			operation = e.getActionCommand();
+						
+			if (operation!="=") {
+
+				result = firstNumber;
+
+				display.setText("" + result);
+
+				start = true;
+				
+				operationSaved=operation;
+
+			}
+
+			if (operation.equalsIgnoreCase("="))
+
+			{
+
+				if (operationSaved.equalsIgnoreCase("+")) {
+					result += firstNumber;
+					display.setText("" + result);
+				} else if (operationSaved.equalsIgnoreCase("-")) {
+					result -= firstNumber;
+					display.setText("" + result);
+				} else if (operationSaved.equalsIgnoreCase("X")) {
+					result *= firstNumber;
+					display.setText("" + result);
+				} else if (operationSaved.equalsIgnoreCase("/")) {
+					if (firstNumber != 0.0) {
+						result/=firstNumber;
+						display.setText("" + result);
+					}
+					else {
+						display.setText("Error");
+					}
+					
+				}
+
+				start = true;
+			}
+
+		}
+
+	}
 }
