@@ -14,6 +14,7 @@ public class CalculatorLayout {
 		CalculatorFrame frame = new CalculatorFrame();
 		
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
 	}
 
 }
@@ -48,6 +49,25 @@ class PanelCalculator extends JPanel {
 		JPanel numeracion = new JPanel();
 		
 		numeracion.setLayout(new GridLayout(4,4));
+		
+		numeracion.add(new JButton("7"));
+		numeracion.add(new JButton("8"));
+		numeracion.add(new JButton("9"));
+		numeracion.add(new JButton("X"));
+		numeracion.add(new JButton("4"));
+		numeracion.add(new JButton("5"));
+		numeracion.add(new JButton("6"));
+		numeracion.add(new JButton("-"));
+		numeracion.add(new JButton("1"));
+		numeracion.add(new JButton("2"));
+		numeracion.add(new JButton("3"));
+		numeracion.add(new JButton("+"));
+		numeracion.add(new JButton("0"));
+		numeracion.add(new JButton("."));
+		numeracion.add(new JButton("="));
+		numeracion.add(new JButton(""));
+		
+		add(numeracion,BorderLayout.CENTER);
 		
 	}
 
