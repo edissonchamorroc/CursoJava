@@ -3,6 +3,7 @@ package chamorro.edisson.swing;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -34,9 +35,16 @@ class LaminaRadioButton extends JPanel{
 	
 	public LaminaRadioButton() {
 		
+		ButtonGroup grupoBotones = new ButtonGroup();
+		
 		boton1= new JRadioButton("Masculino");
 		boton2= new JRadioButton("Femenino");
 		boton3= new JRadioButton("Prefiero no decirlo");
+		grupoBotones.add(boton1);
+		grupoBotones.add(boton2);
+		grupoBotones.add(boton3);
+		
+		
 		
 		add(boton1);
 		add(boton2);
