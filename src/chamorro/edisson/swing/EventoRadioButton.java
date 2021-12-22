@@ -44,6 +44,7 @@ class LaminaRadioButton extends JPanel{
 		grupoBotones.add(boton2);
 		grupoBotones.add(boton3);
 		
+		boton1.addActionListener(new ManejaRadioButton());
 		
 		
 		add(boton1);
@@ -55,12 +56,13 @@ class LaminaRadioButton extends JPanel{
 	}
 	private class ManejaRadioButton implements ActionListener{
 		
-		private int negrita_cursiva=0;
-		@Override
+		
+		
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-		
+			if(boton1.isSelected()) System.out.println("Has seleccionado masculino");
 		}
 		
 	}
+	
 }
