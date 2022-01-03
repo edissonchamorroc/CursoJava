@@ -14,27 +14,26 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.text.Document;
 
 public class Ejercicio1 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		MarcoEjercicio marco = new MarcoEjercicio();
+		MarcoEjercicio1 marco = new MarcoEjercicio1();
 		marco.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
 }
 
-class MarcoEjercicio extends JFrame {
-	public MarcoEjercicio() {
+class MarcoEjercicio1 extends JFrame {
+	public MarcoEjercicio1() {
 		setBounds(400, 200, 600, 500);
-		add(new LaminaEjercicio());
+		add(new LaminaEjercicio1());
 		setVisible(true);
 	}
 }
 
-class LaminaEjercicio extends JPanel {
+class LaminaEjercicio1 extends JPanel {
 
 	public JPanel superior = new JPanel();
 	private JPanel inferior = new JPanel();
@@ -46,7 +45,7 @@ class LaminaEjercicio extends JPanel {
 	private JTextField nombre, apellido;
 	private JLabel lNombre, Lapellido;
 
-	public LaminaEjercicio() {
+	public LaminaEjercicio1() {
 		setLayout(new BorderLayout());
 
 		lNombre = new JLabel("Nombre");
@@ -131,7 +130,9 @@ class LaminaEjercicio extends JPanel {
 			  else resultado+="radio 2 desactivado\n";
 				  
 		  }
+		  
 		  area1.setText(resultado);
+		  System.out.println(resultado);
 		  contador++;
 		}
 

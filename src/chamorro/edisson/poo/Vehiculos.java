@@ -2,6 +2,14 @@ package chamorro.edisson.poo;
 
 public class Vehiculos {
 	//sobrecarga de constructores-----------
+	//encapsulamiento -- metodos que solo se accede desde la misma clasee
+	private int ruedas,largo,ancho,peso;
+	private String color;
+	private boolean climatizador,gps, tapiceria; 
+	
+	public Vehiculos() {
+		 
+	}
 	public Vehiculos(int ruedas) {//constructor
 		this.ruedas=ruedas;
 		largo=3;
@@ -51,14 +59,18 @@ public class Vehiculos {
 	public void setpeso(int p) {
 		peso=p;
 	}
+	public void desplazar() {
+		System.out.println("vehiculo se está desplazando");
+	}
+	
+	public static Vehiculos clonar() {
+		return new Vehiculos();
+	}
 	
 	
 	public String getDatos() {
 		return "El vehiculo tiene:\ncolor: "+color+"\nlargo: "+largo+"\nancho: "+ancho+"\npeso: "+peso;
 	}
 	
-	//encapsulamiento -- metodos que solo se accede desde la misma clasee
-	private int ruedas,largo,ancho,peso;
-	private String color;
-	private boolean climatizador,gps, tapiceria; 
+
 }
