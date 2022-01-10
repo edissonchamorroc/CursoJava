@@ -1,4 +1,4 @@
-package chamorro.edisson.ficheros;
+package chamorro.edisson.ficherosexternos;
 
 import java.io.*;
 

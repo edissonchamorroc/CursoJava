@@ -103,7 +103,7 @@ public class conexionOracle {
 			
 			int r=0;
 			stmt=conexion.createStatement();
-			r=stmt.executeUpdate("delete from usuarios where nombre='"+id+"'");
+			r=stmt.executeUpdate("delete from usuarios where Email='"+id+"'");
 			JOptionPane.showMessageDialog(null, (r + 1) + " usuario eliminado");
 		}catch(Exception e) {
 			JOptionPane.showMessageDialog(null,"usuario eliminado");

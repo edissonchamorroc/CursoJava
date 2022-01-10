@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -47,12 +46,12 @@ class Lamina extends JPanel{
 	public JButton agregarUsuario= new JButton("Agregar");
 	public JButton borrarUsuario= new JButton("Borrar");
 	
-	public JTextField id= new JTextField(20);
+	
 	public JTextField nombre= new JTextField(20);
 	public JTextField apellido= new JTextField(20);
 	public JTextField email= new JTextField(20);
 	
-	public JLabel labelId= new JLabel("ID");
+	
 	public JLabel labelNombre= new JLabel("Nombre");
 	public JLabel labelApellido= new JLabel("Apellido");
 	public JLabel labelEmail= new JLabel("Email");
@@ -71,8 +70,6 @@ class Lamina extends JPanel{
 		datosSalida.setLayout(new GridLayout(2,3));
 		botones.setLayout(new GridLayout(1,2));
 		
-		addJLabel(datosEntrada,labelId);
-		addJText(datosEntrada,id);
 		addJLabel(datosEntrada,labelNombre);
 		addJText(datosEntrada,nombre);
 		addJLabel(datosEntrada,labelApellido);
@@ -90,8 +87,8 @@ class Lamina extends JPanel{
 		addButton(agregarUsuario);
 		addButton(borrarUsuario);
 
-		crearTabla.addActionListener(new crearTablas());
-		eliminarTabla.addActionListener(new deleteTable());
+		crearTabla.addActionListener(new eventosBBDD());
+		eliminarTabla.addActionListener(new eventosBBDD());
 		
 		add(datosEntrada,BorderLayout.NORTH);
 		add(crearTabla,BorderLayout.WEST);
@@ -103,11 +100,12 @@ class Lamina extends JPanel{
 	}
 	private void addJArea(JPanel panel,JTextArea area) {
 		panel.add(area);
+		panel.setBorder(getBorder());
 	}
 		
 	private void addButton(JButton boton) {
 		
-		boton.addActionListener(new modificarPersonal());
+		boton.addActionListener(new eventosBBDD());
 		botones.add(boton);
 		
 	}
@@ -119,45 +117,26 @@ class Lamina extends JPanel{
 				
 		panel.add(field);
 	}
-	
-	private class crearTablas implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stu
-			
-				ddBB.crearTabla();
-
-		}
-		
-	}
-	private class deleteTable implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stu
-			
-				ddBB.borrarTabla();
-
-		}
-		
-	}
-	private class modificarPersonal implements ActionListener{
+	private class eventosBBDD implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			if(e.getSource()==agregarUsuario) {
+			if(e.getSource()==crearTabla) {
+				ddBB.crearTabla();
+			}else if(e.getSource()==eliminarTabla){
+				ddBB.borrarTabla();
+			}
+			else if(e.getSource()==agregarUsuario){
 				ddBB.agregarUser(nombre.getText(), apellido.getText(), email.getText());
 				nameEnBD.setText(ddBB.nombreUsuario(apellido.getText()));
-	
+
 			}
 			else if(e.getSource()==borrarUsuario) {
-				ddBB.borrarUsuario(id.getText());
+				ddBB.borrarUsuario(email.getText());
 			}
 		}
 		
 	}
-
 	
 }
