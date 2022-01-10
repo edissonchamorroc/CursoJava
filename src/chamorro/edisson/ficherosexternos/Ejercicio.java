@@ -13,21 +13,29 @@ public class Ejercicio {
 		String arc=JOptionPane.showInputDialog("nom arch: ");
 		String frase=JOptionPane.showInputDialog("frase: ");
 		
-		File dirc=new File("C:"+File.separator+"Users"+File.separator+"edisson"+File.separator+"Documents"+File.separator+"pago credito cesde"+File.separator+Dir);
+		String pathDirectorio="C:"+File.separator+"Users"+File.separator+"marce"+File.separator+"Documents"+File.separator+"Edisson"+File.separator+"crearDirectorioJava"+File.separator+Dir;
+		String pathArchivo=pathDirectorio+File.separator+arc+".txt";
 		
+		
+		File dirc=new File(pathDirectorio);
+		//creacion directorio
 		dirc.mkdir();
 		
-		File archivo=new File("C:"+File.separator+"Users"+File.separator+"edisson"+File.separator+"Documents"+File.separator+"pago credito cesde"+File.separator+Dir+File.separator+arc+".txt");
+		File archivo=new File(pathArchivo);
 		
 		try {
+			//creacion de archivo
 			archivo.createNewFile();
-			FileWriter escritura=new FileWriter("C:"+File.separator+"Users"+File.separator+"edisson"+File.separator+"Documents"+File.separator+"pago credito cesde"+File.separator+Dir+File.separator+arc+".txt",true);
+			
+			//escribir en archivo
+			FileWriter escritura=new FileWriter(pathArchivo,true);
+			
 			for(int i=0;i<frase.length();i++) {
 				escritura.write(frase.charAt(i));
 			}
 			escritura.close();
 		}catch(Exception e) {
-			
+			System.out.println("El el directorio no existe");
 		}
 	}
 
