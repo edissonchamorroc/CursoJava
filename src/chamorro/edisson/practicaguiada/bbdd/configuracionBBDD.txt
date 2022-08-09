@@ -1,0 +1,3 @@
+jdbc:sqlserver://localhost:1433;database=Northwind;integratedSecurity=false;encrypt=true;trustServerCertificate=true;
+user=edi;
+password=1234e;loginTimeout = 30;
