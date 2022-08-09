@@ -29,7 +29,7 @@ public class conexionOracle {
 			conexion = DriverManager.getConnection(DB_URL, USER, PASS);
 			JOptionPane.showMessageDialog(null, "Se ha conectado satisfactoriamente");
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "No se pudo conectar");
+			JOptionPane.showMessageDialog(null, "No se pudo conectar"); 
 		}
 	}
 
